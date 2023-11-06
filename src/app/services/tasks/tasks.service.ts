@@ -8,10 +8,14 @@ import { Observable, map } from 'rxjs';
 export class TasksService {
   baseurl = "https://app.microenv.com/backend/key/5d4c61b55d704691c11652/rest/api/tasks/"
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   public getTasks() : Observable<any> {
-    return this.httpClient.get(this.baseurl)
-    .pipe(map((response : Response) => response));
+    return this.http.get(this.getUrl())
+      .pipe(map((response: Response) => response));
+  }
+
+  private getUrl() {
+    return `${this.baseurl}`;
   }
 }

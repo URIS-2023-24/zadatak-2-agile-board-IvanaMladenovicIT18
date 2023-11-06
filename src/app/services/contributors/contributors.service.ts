@@ -5,13 +5,18 @@ import { Observable, map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ContributorsService {
-  baseurl = "https://app.microenv.com/backend/key/5d4c61b55d704691c11652/rest/api/constributors/"
 
-  constructor(private httpClient: HttpClient) { }
+export class ContributorsService {
+  baseurl = "https://app.microenv.com/backend/key/5d4c61b55d704691c11652/rest/api/contributors/"
+
+  constructor(private http: HttpClient) { }
 
   public getContributors() : Observable<any> {
-    return this.httpClient.get(this.baseurl)
-    .pipe(map((response : Response) => response));
+    return this.http.get(this.getUrl())
+      .pipe(map((response: Response) => response));
+  }
+
+  private getUrl() {
+    return `${this.baseurl}`;
   }
 }

@@ -9,6 +9,7 @@ import { TasksService } from 'app/services/tasks/tasks.service';
   templateUrl: './table-list.component.html',
   styleUrls: ['./table-list.component.css']
 })
+
 export class TableListComponent implements OnInit {
   tasks: Task[] = [];
   contributors: Contributor[] = [];
@@ -17,6 +18,7 @@ export class TableListComponent implements OnInit {
               private contributorService : ContributorsService) { }
               
   ngOnInit() {
+    this.startSubscription();
   }
 
   startSubscription() {
